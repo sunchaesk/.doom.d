@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: makefile-template
+# key:
+# --
+CC := gcc
+WARNING := -Wall
+CFLAGS := -g -std=c11
+SRCS := $(wildcard *.c)
+OBJS := $(SRCS:.c=.o)
+
+all: $(SRCS)
+	$(CC) $(WARNING) $(CFLAGS) $(SRCS) -o c
+	./c
+
+warn: $(SRCS)
+	$(CC) $(CFLAGS) $(SRCS) -o c
+	./c
+
+clean:
+	rm c
+
+.PHONY: clean warn

@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: latex-base-template
+# key:
+# --
+\documentclass[11pt]{article}
+
+\usepackage{setspace}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{graphicx}
+
+\graphicspath{ {./} }
+
+\setstretch{1.1}
+
+\title{}
+\author{Chris Kim}
+% last compiled date
+\date{today}
+
+\begin{document}
+\maketitle
+
+\end{document}

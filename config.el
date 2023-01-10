@@ -95,8 +95,8 @@
             (if space-pos
                 (kill-region cp space-pos)
               (backward-kill-word 1))))
-      (kill-region cp (- cp 1)))         ;; word is non-english word
-    ))
+      (kill-region cp (- cp 1)))))         ;; word is non-english word
+    
 
 (global-set-key  [C-backspace]
                  'chris/backward-kill-word)
@@ -177,10 +177,16 @@
 
 ;;; Python
 (add-to-list 'display-buffer-alist
-'("^\\*Python\\*$" . (display-buffer-same-window)))
+ '("^\\*Python\\*$" . (display-buffer-same-window)))
 
 ;; neotree
-  (setq neo-window-fixed-size nil)
+(setq neo-window-fixed-size nil)
 
 ;; latex viewer chnage pdf viewer
 (setq +latex-viewers '(okular))
+
+;; yas snippet unbind TAB
+;;(yas/global-mode 1)
+;;(Define-key yas-minor-mode-map [backtab]     'yas-expand)
+(define-key yas-minor-mode-map [(tab)] nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)

@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: makefile-variable-compilation
+# key:
+# --
+CC := gcc
+CFLAGS := -g -std=c11
+WARN := -Wall
+
+all:
+	$(CC) $(CFLAGS) $(src) -o c
+	./c
+
+warn:
+	$(CC) $(WARN) $(CFLAGS) $(src) -o c
+	./c
+
+clean:
+	 rm c
+
+.PHONY: clean warn
