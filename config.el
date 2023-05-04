@@ -96,7 +96,7 @@
                 (kill-region cp space-pos)
               (backward-kill-word 1))))
       (kill-region cp (- cp 1)))))         ;; word is non-english word
-    
+
 
 (global-set-key  [C-backspace]
                  'chris/backward-kill-word)
@@ -112,8 +112,8 @@
 (global-set-key (kbd "C-c k") 'delete-other-windows)
 
 ;; transparency
-;(set-frame-parameter (selected-frame) 'alpha '(85 50))
-;(add-to-list 'default-frame-alist '(alpha 85 50))
+                                        ;(set-frame-parameter (selected-frame) 'alpha '(85 50))
+                                        ;(add-to-list 'default-frame-alist '(alpha 85 50))
 
 ;; Down 10 lines up 10 lines
 (evil-define-motion LS-down-10-lines ()
@@ -149,11 +149,11 @@
 ;; (require 'd-mode)
 
 (flycheck-define-checker zig
-    "A zig syntax checker using the zig-fmt interpreter."
-    :command ("zig" "fmt" (eval (buffer-file-name)))
-    :error-patterns
-    ((error line-start (file-name) ":" line ":" column ": error: " (message) line-end))
-    :modes zig-mode)
+  "A zig syntax checker using the zig-fmt interpreter."
+  :command ("zig" "fmt" (eval (buffer-file-name)))
+  :error-patterns
+  ((error line-start (file-name) ":" line ":" column ": error: " (message) line-end))
+  :modes zig-mode)
 (add-to-list 'flycheck-checkers 'zig)
 
 ;; (package! 'smalltalk-mode)
@@ -177,7 +177,7 @@
 
 ;;; Python
 (add-to-list 'display-buffer-alist
- '("^\\*Python\\*$" . (display-buffer-same-window)))
+             '("^\\*Python\\*$" . (display-buffer-same-window)))
 
 ;; neotree
 (setq neo-window-fixed-size nil)
@@ -190,3 +190,11 @@
 ;;(Define-key yas-minor-mode-map [backtab]     'yas-expand)
 (define-key yas-minor-mode-map [(tab)] nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
+
+(defun valgrind ()
+  (interactive)
+  (compilation-minor-mode)
+  (define-key compilation-minor-mode-map (kbd "S-") ‘compile-goto-error)
+  (define-key compilation-minor-mode-map (kbd "") ‘comint-send-input))
+
+(add-hook ‘shell-mode-hook ‘valgrind)
