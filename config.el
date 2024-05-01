@@ -198,3 +198,12 @@
   (define-key compilation-minor-mode-map (kbd "") ‘comint-send-input))
 
 (add-hook ‘shell-mode-hook ‘valgrind)
+
+;; unbinds TAB (doesn't work)
+(after! makefile-mode
+  (map! :map makefile-mode-map
+        "TAB" #'indent-for-tab-command
+        (kbd "C-c C-y") nil))
+
+;; disable pylint
+(setq-default flycheck-disabled-checkers '(python-pylint))

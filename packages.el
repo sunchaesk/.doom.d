@@ -52,3 +52,5 @@
 
 (package! visual-fill-column)
 (package! writeroom-mode)
+
+(package! verilog-mode)
