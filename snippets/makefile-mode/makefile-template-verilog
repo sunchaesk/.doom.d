@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: makefile-template-verilog
+# key:
+# --
+VERILOG_COMPILER:= iverilog
+EXEC_F := test
+SRCS := $(wildcard *.v)
+
+all: $(SRCS)
+	$(VERILOG_COMPILER) -o $(EXEC_F) $(SRCS)
+	vvp $(EXEC_F)
+	gtkwave $(EXEC_F).vcd
+
+# co stands for: "compilation only" -> no gtkwave simulation
+co: $(SRCS)
+	$(VERILOG_COMPILER) -o test $(SRCS)
+	vvp $(EXEC_F)
+
+clean:
+	rm $(EXEC_F)
+
+.PHONY: clean co
