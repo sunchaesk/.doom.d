@@ -148,6 +148,10 @@
 
 ;; (require 'd-mode)
 
+;; verilog mode
+;; Activate verilog-mode for .vl files
+(add-to-list 'auto-mode-alist '("\\.vl\\'" . verilog-mode))
+
 (flycheck-define-checker zig
   "A zig syntax checker using the zig-fmt interpreter."
   :command ("zig" "fmt" (eval (buffer-file-name)))
@@ -165,16 +169,6 @@
   (interactive)
   (message (buffer-file-name)))
 
-;; writing, open file automatically in browser
-(defun Writing-curr-file-open-browser ()
-  (interactive)
-  (save-buffer)
-  (org-html-export-to-html buffer-file-name)
-  (browse-url (concat
-               (file-name-sans-extension buffer-file-name)
-               ".html")))
-;; end
-
 ;;; Python
 (add-to-list 'display-buffer-alist
              '("^\\*Python\\*$" . (display-buffer-same-window)))
@@ -185,19 +179,14 @@
 ;; latex viewer chnage pdf viewer
 (setq +latex-viewers '(okular))
 
-;; yas snippet unbind TAB
+;; yas snippet unbind TAB (not working)
 ;;(yas/global-mode 1)
-;;(Define-key yas-minor-mode-map [backtab]     'yas-expand)
-(define-key yas-minor-mode-map [(tab)] nil)
-(define-key yas-minor-mode-map (kbd "TAB") nil)
 
 (defun valgrind ()
   (interactive)
   (compilation-minor-mode)
   (define-key compilation-minor-mode-map (kbd "S-") ‘compile-goto-error)
   (define-key compilation-minor-mode-map (kbd "") ‘comint-send-input))
-
-(add-hook ‘shell-mode-hook ‘valgrind)
 
 ;; unbinds TAB (doesn't work)
 (after! makefile-mode
@@ -207,3 +196,4 @@
 
 ;; disable pylint
 (setq-default flycheck-disabled-checkers '(python-pylint))
+
