@@ -197,3 +197,6 @@
 ;; disable pylint
 (setq-default flycheck-disabled-checkers '(python-pylint))
 
+
+;; Disable automatic formatting on save
+(setq +format-on-save-enabled-modes '(not c++-mode c-mode))
